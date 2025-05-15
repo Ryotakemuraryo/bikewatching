@@ -116,7 +116,7 @@ map.on('load', async () => {
           .append('title')
           .text(
             `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`,
-          );
+          );});
 
     // Function to update circle positions when the map moves/zooms
     function updatePositions() {
@@ -143,4 +143,4 @@ function getCoords(station) {
     const { x, y } = map.project(point); // Project to pixel coordinates
     return { cx: x, cy: y }; // Return as object for use in SVG attributes
   }
-})
+
