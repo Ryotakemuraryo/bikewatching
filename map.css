@@ -27,3 +27,11 @@ body {
 #map svg circle {
     pointer-events: auto;
   }  
+
+
+header{
+   display: flex;
+   gap: 1em;
+   align-items: baseline; 
+   margin-left: auto;
+}
