@@ -86,6 +86,9 @@ map.on('load', async () => {
       
     const svg = d3.select('#map').select('svg');
       // Append circles to the SVG for each station
+
+    let stationFlow = d3.scaleQuantize().domain([0, 1]).range([0, 0.5, 1]);
+
     const circles = svg
       .selectAll('circle')
       .data(stations, (d) => d.short_name) // Use station short_name as the key
@@ -102,7 +105,11 @@ map.on('load', async () => {
             .append('title')
             .text(
               `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`,
-            );});
+            );})
+      .style('--departure-ratio', (d) =>
+                stationFlow(d.departures / d.totalTraffic),
+              );
+            
     
     
         
@@ -159,7 +166,10 @@ map.on('load', async () => {
         circles
           .data(filteredStations, (d) => d.short_name) // Ensure D3 tracks elements correctly
           .join('circle') // Ensure the data is bound correctly
-          .attr('r', (d) => radiusScale(d.totalTraffic)); // Update circle sizes
+          .attr('r', (d) => radiusScale(d.totalTraffic)) // Update circle sizes
+          .style('--departure-ratio', (d) =>
+            stationFlow(d.departures / d.totalTraffic),
+          );
       }
 
 
