@@ -18,6 +18,11 @@ const map = new mapboxgl.Map({
   maxZoom: 18, // Maximum allowed zoom
 });
 
+const timeSlider = document.getElementById('time-slider');
+const selectedTime = document.getElementById('selected-time');
+const anyTimeLabel = document.getElementById('any-time');
+
+
 map.on('load', async () => {
     //code
     map.addSource('boston_route', {
@@ -98,7 +103,9 @@ map.on('load', async () => {
             .text(
               `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`,
             );});
-
+    
+    
+        
 
 
     function minutesSinceMidnight(date) {
@@ -129,6 +136,7 @@ map.on('load', async () => {
           anyTimeLabel.style.display = 'block'; // Show "(any time)"
         } else {
           selectedTime.textContent = formatTime(timeFilter); // Display formatted time
+          selectedTime.style.display = 'block';   
           anyTimeLabel.style.display = 'none'; // Hide "(any time)"
         }
       
@@ -206,10 +214,6 @@ function getCoords(station) {
     return { cx: x, cy: y }; // Return as object for use in SVG attributes
   }
 
-
-const timeSlider = document.getElementById('time-slider');
-const selectedTime = document.getElementById('selected-time');
-const anyTimeLabel = document.getElementById('any-time');
 
 function formatTime(minutes) {
     const date = new Date(0, 0, 0, 0, minutes); // Set hours & minutes

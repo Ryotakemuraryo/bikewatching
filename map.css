@@ -29,9 +29,35 @@ body {
   }  
 
 
-header{
-   display: flex;
-   gap: 1em;
-   align-items: baseline; 
-   margin-left: auto;
-}
+header {
+    display: flex;
+    justify-content: space-between;  /* ← 左右を分ける */
+    align-items: center;
+    padding: 1em;
+    gap: 1em;
+  }
+  
+.left h1 {
+    margin: 0;
+  }
+  
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;  /* ← スライダー・表示を右寄せ */
+    gap: 0.3em;
+  }
+  
+#time-slider {
+    width: 400px; /* バーの長さも調整可能 */
+  }
+  
+#any-time {
+    color: gray;
+    font-style: italic;
+  }
+  
+#selected-time {
+    display: block;
+  }
+  
